@@ -107,17 +107,23 @@ export const fetchServerPage = async ({
   fetcher,
   path,
   query: rawQuery,
+  deviceInfo,
 }: {
   path: string
   query?: Record<string, string>
   fetcher: GlobalFetch['fetch']
+  deviceInfo?: DeviceInfo
 }): Promise<ParsedServerPageResponse> => {
   const parsedUrl = parse(path)
   parsedUrl.search = undefined
   parsedUrl.query = {
     ...rawQuery,
     __pickRuntime: runtimeFields,
+    ...(deviceInfo && {
+      __device: deviceInfo.type,
+    }),
   } as any
+
   const url = format(parsedUrl)
   const page: ServerPageResponse = await fetchWithRetry(
     url,
