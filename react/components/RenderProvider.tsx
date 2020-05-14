@@ -57,6 +57,8 @@ import ExtensionManager from './ExtensionPoint/ExtensionManager'
 import ExtensionPoint from './ExtensionPoint'
 import { RenderContextProvider } from './RenderContext'
 import RenderPage from './RenderPage'
+import { withDevice, WithDeviceProps, DeviceInfo } from '../utils/withDevice'
+import difference from 'ramda/es/difference'
 
 // TODO: Export components separately on @vtex/blocks-inspector, so this import can be simplified
 const InspectorPopover = React.lazy(
@@ -122,7 +124,10 @@ interface NavigationState {
   lastOptions?: NavigateOptions
 }
 
-class RenderProvider extends Component<Props, RenderProviderState> {
+class RenderProvider extends Component<
+  Props & WithDeviceProps,
+  RenderProviderState
+> {
   navigationState: NavigationState = { isNavigating: false }
   public static childContextTypes = {
     account: PropTypes.string,
@@ -211,7 +216,7 @@ class RenderProvider extends Component<Props, RenderProviderState> {
   private navigationModifierOptions: Record<string, NavigationRouteChange>
   private fetcher: GlobalFetch['fetch']
 
-  public constructor(props: Props) {
+  public constructor(props: Props & WithDeviceProps) {
     super(props)
     const {
       appsEtag,
@@ -1174,4 +1179,4 @@ class RenderProvider extends Component<Props, RenderProviderState> {
   }
 }
 
-export default RenderProvider
+export default withDevice(RenderProvider)
