@@ -1256,4 +1256,4 @@ class RenderProvider extends Component<
   }
 }
 
-export default withDevice(RenderProvider)
+export default withDevice<Props>(RenderProvider)

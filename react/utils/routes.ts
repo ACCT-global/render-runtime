@@ -7,6 +7,7 @@ import routePreviews from '../queries/routePreviews.graphql'
 import { generateExtensions } from './blocks'
 import { fetchWithRetry } from './fetch'
 import { parseMessages } from './messages'
+import { DeviceInfo } from './withDevice'
 
 const parsePageQueryResponse = (
   page: PageQueryResponse
