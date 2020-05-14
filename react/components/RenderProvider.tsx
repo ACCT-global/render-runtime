@@ -628,12 +628,14 @@ class RenderProvider extends Component<
     const {
       runtime: { renderMajor },
     } = this.props
+
     const {
       culture: { locale },
       pages: pagesState,
       production,
       route,
       loadedPages,
+      deviceInfo,
     } = this.state
     const { state } = location
 
@@ -686,6 +688,7 @@ class RenderProvider extends Component<
           fetcher: this.fetcher,
           path: navigationRoute.path,
           query,
+          deviceInfo,
         }).then(
           async ({
             appsEtag,
