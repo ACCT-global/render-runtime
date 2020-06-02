@@ -203,6 +203,7 @@ declare global {
     components: RenderRuntime['components']
     contentMap: RenderRuntime['contentMap']
     culture: RenderRuntime['culture']
+    salesChannel: RenderRuntime['salesChannel']
     defaultExtensions: RenderRuntime['defaultExtensions']
     device: ConfigurationDevice
     emitter: RenderRuntime['emitter']
@@ -449,6 +450,7 @@ declare global {
     route: Route
     version: string
     culture: Culture
+    salesChannel?: string
     pages: Pages
     extensions: Extensions
     platform: string
